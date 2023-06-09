@@ -1,0 +1,2 @@
+//ctrl + c closes nodemon 
+//"start":"npx nodemon src/index.js"

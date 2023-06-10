@@ -1,2 +1,5 @@
 //ctrl + c closes nodemon 
 //"start":"npx nodemon src/index.js"
+//  nvm install node if node and npm version not matching in terminal
+// /usr/local/mysql/bin/mysql -uroot -p mysql command not found 
+// forgotten password took a while to sort out deleted all data belonging to sql using app cleaner and uninstaller 

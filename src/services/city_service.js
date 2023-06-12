@@ -24,11 +24,12 @@ class CityService {
 
     async deleteCity(cityId){
         try {
-            await this.cityRepository.destroy({
+            const response = await this.cityRepository.destroy({
                 where: {
                   id: cityId
                 }
               })
+              return response;
         } catch (error) {
             console.log("unable to delete city")
             throw(error);

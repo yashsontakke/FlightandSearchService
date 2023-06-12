@@ -12,7 +12,7 @@ const setupAndStarttheServer = async () =>{
         const city_repository = new cityrepository();
         // city_repository.createCity({name:"Nanded"});
         // city_repository.getCity(5);
-        // city_repository.updateCity(6,"Latur");
+        // city_repository.updateCity(4,"Latur");
         // city_repository.deleteCity(9);
     })
 }

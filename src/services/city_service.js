@@ -1,11 +1,13 @@
-const city = require("../models/city");
-const {City} = require("../models/index"); 
+const {CityRepository} = require("../repository/index");
+class CityService {
 
-class CityRepository{
+    constructor(){
+        this.cityRepository= new CityRepository();
+    }
 
-     async createCity({name}){
+    async createCity({name}){
         try {
-            const existingCity = await City.findOne({ where: { "name": name } });
+            const existingCity = await this.cityRepository({ where: { "name": name } });
             if (existingCity) {
                 throw new Error('User with the same name already exists');
               } else {
@@ -22,7 +24,7 @@ class CityRepository{
 
     async deleteCity(cityId){
         try {
-            await City.destroy({
+            await this.cityRepository.destroy({
                 where: {
                   id: cityId
                 }
@@ -35,7 +37,7 @@ class CityRepository{
 
     async updateCity(cityId,data){
         try {
-            const city = await City.findOne({ where: { id: cityId } });
+            const city = await this.cityRepository.findOne({ where: { id: cityId } });
             city.name = data;
             await city.save();
             return city ;
@@ -47,7 +49,7 @@ class CityRepository{
 
     async getCity(cityId){
         try {
-            const city = await City.findByPk(cityId);
+            const city = await this.cityRepository.findByPk(cityId);
             console.log(city);
             return city ;
         } catch (error) {
@@ -55,6 +57,6 @@ class CityRepository{
             throw(error);
         }
     }
-}
 
-module.exports= CityRepository;
+}
+module.exports={CityService}

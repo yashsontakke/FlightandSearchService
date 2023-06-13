@@ -1,63 +1,48 @@
-const {CityRepository} = require("../repository/index");
+const { CityRepository } = require("../repository/index");
 class CityService {
 
-    constructor(){
-        this.cityRepository= new CityRepository();
+    constructor() {
+        this.cityRepository = new CityRepository();
     }
 
-    async createCity({name}){
+    async createCity(data) {
         try {
-            const existingCity = await this.cityRepository({ where: { "name": name } });
-            if (existingCity) {
-                throw new Error('User with the same name already exists');
-              } else {
-                const city = await City.create({name});
-                return city ;
-              }
-            
+            console.log("i m in service");
+            const city = await this.cityRepository.createCity(data);
+            return city;
         } catch (error) {
-            console.log("unable to create city")
-            throw(error);
-            
+            throw (error);
         }
     }
 
-    async deleteCity(cityId){
+    async deleteCity(cityId) {
         try {
-            const response = await this.cityRepository.destroy({
-                where: {
-                  id: cityId
-                }
-              })
-              return response;
+            const response = await this.cityRepository.deleteCity(cityId)
         } catch (error) {
             console.log("unable to delete city")
-            throw(error);
+            throw (error);
         }
     }
 
-    async updateCity(cityId,data){
+    async updateCity(cityId, data) {
         try {
-            const city = await this.cityRepository.findOne({ where: { id: cityId } });
-            city.name = data;
-            await city.save();
-            return city ;
+            const city = await this.cityRepository.updateCity(cityId, data);
+            return city;
         } catch (error) {
             console.log("unable to update city")
-            throw(error);
+            throw (error);
         }
     }
 
-    async getCity(cityId){
+    async getCity(cityId) {
         try {
-            const city = await this.cityRepository.findByPk(cityId);
-            console.log(city);
-            return city ;
+            const city = await this.cityRepository.getCity(cityId);
+            return city;
         } catch (error) {
             console.log("unable to get city")
-            throw(error);
+            throw (error);
         }
     }
 
 }
-module.exports={CityService}
+module.exports = CityService;

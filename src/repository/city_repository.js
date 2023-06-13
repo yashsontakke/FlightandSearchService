@@ -1,60 +1,61 @@
-const city = require("../models/city");
-const {City} = require("../models/index"); 
+const { City } = require("../models/index");
 
-class CityRepository{
+class CityRepository {
 
-     async createCity({name}){
+    async createCity({ name }) {
         try {
+            console.log("i m in repository");
             const existingCity = await City.findOne({ where: { "name": name } });
             if (existingCity) {
+                console.log("already exists");
                 throw new Error('User with the same name already exists');
-              } else {
-                const city = await City.create({name});
-                return city ;
-              }
-            
+            } else {
+                const city = await City.create({ name });
+                return city;
+            }
+
         } catch (error) {
             console.log("unable to create city")
-            throw(error);
-            
+            throw (error);
+
+
         }
     }
 
-    async deleteCity(cityId){
+    async deleteCity(cityId) {
         try {
             await City.destroy({
                 where: {
-                  id: cityId
+                    id: cityId
                 }
-              })
+            })
         } catch (error) {
             console.log("unable to delete city")
-            throw(error);
+            throw (error);
         }
     }
 
-    async updateCity(cityId,data){
+    async updateCity(cityId, data) {
         try {
             const city = await City.findOne({ where: { id: cityId } });
-            city.name = data;
+            city.name = data.newName;
             await city.save();
-            return city ;
+            return city;
         } catch (error) {
             console.log("unable to update city")
-            throw(error);
+            throw (error);
         }
     }
 
-    async getCity(cityId){
+    async getCity(cityId) {
         try {
             const city = await City.findByPk(cityId);
-            console.log(city);
-            return city ;
+            return city;
         } catch (error) {
             console.log("unable to get city")
-            throw(error);
+            throw (error);
         }
     }
 }
 
-module.exports= CityRepository;
+module.exports = CityRepository;

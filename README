@@ -4,3 +4,6 @@
 // /usr/local/mysql/bin/mysql -uroot -p mysql command not found 
 // forgotten password took a while to sort out deleted all data belonging to sql using app cleaner and uninstaller 
 // sql server was timeedout so restared from mac setting 
+//references: { model: 'cities', key: 'id' }, cities beacuse of table name 
+// file name will be smallcase but model nam will be largecase
+// forgot to ; in sql command goes into hell pres; and enter 

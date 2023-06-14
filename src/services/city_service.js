@@ -44,5 +44,15 @@ class CityService {
         }
     }
 
+    async getCities(data){
+        try {
+            const cities = await this.cityRepository.getCities(data);
+            return cities ;
+        } catch (error) {
+            console.log("unable to get cities")
+            throw (error);
+        }
+    }
+
 }
 module.exports = CityService;

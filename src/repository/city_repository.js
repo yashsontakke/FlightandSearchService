@@ -1,4 +1,5 @@
 const { City } = require("../models/index");
+const {Sequelize} = require('sequelize');
 
 class CityRepository {
 
@@ -55,6 +56,30 @@ class CityRepository {
             console.log("unable to get city")
             throw (error);
         }
+    }
+
+    async getCities ({search}){
+        try {
+            if(search){
+                console.log(search);
+                const cities = await City.findAll({
+                    where: {
+                      name: {
+                        [Sequelize.Op.startsWith]: search // Filter cities where the name starts with 'Delhi'
+                      },
+                    }
+                  });
+                  return cities ;
+            }
+    
+            const cities = await City.findAll();
+            return cities ;
+        } catch (error) {
+            console.log(error)
+            throw (error);
+        }
+        
+
     }
 }
 

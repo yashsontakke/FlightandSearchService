@@ -79,9 +79,30 @@ const getCity = async (req, res) => {
     }
 }
 
+const getCities = async (req,res)=>{
+    try {
+        console.log(req.query);
+        const cities = await cityService.getCities(req.query);
+        return res.status(201).json({
+            data: cities,
+            success: true,
+            error: {},
+            message: "Successfully retrived cities"
+        })
+    } catch (error) {
+        return res.status(500).json({
+            data: {},
+            success: false,
+            error: error,
+            message: "Failed to retrive cities"
+        })
+    }
+}
+
 module.exports = {
     createCity,
     deleteCity,
     updateCity,
-    getCity
+    getCity,
+    getCities
 }

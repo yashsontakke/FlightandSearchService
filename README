@@ -1,9 +1,10 @@
-//ctrl + c closes nodemon 
-//"start":"npx nodemon src/index.js"
-//  nvm install node if node and npm version not matching in terminal
+// ctrl + c closes nodemon 
+// "start":"npx nodemon src/index.js"
+// nvm install node if node and npm version not matching in terminal
 // /usr/local/mysql/bin/mysql -uroot -p mysql command not found 
 // forgotten password took a while to sort out deleted all data belonging to sql using app cleaner and uninstaller 
 // sql server was timeedout so restared from mac setting 
-//references: { model: 'cities', key: 'id' }, cities beacuse of table name 
+// references: { model: 'cities', key: 'id' }, cities beacuse of table name 
 // file name will be smallcase but model nam will be largecase
 // forgot to ; in sql command goes into hell pres; and enter 
+// when seeding if u run seed:all the duplicate data from others seed files gets added so specifilcally seed:specific file 

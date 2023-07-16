@@ -5,7 +5,7 @@ class CityRepository {
 
     async createCity({ name }) {
         try {
-            console.log("i m in repository");
+            
             const existingCity = await City.findOne({ where: { "name": name } });
             if (existingCity) {
                 console.log("already exists");

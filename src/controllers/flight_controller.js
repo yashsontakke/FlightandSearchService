@@ -31,7 +31,29 @@ const create = async (req, res) => {
         });
     }
 }
+const getFlightById = async (req, res) => {
+    try {
+      const flightId = req.params.id; // Assuming the flight ID is passed as a URL parameter
+      const flight = await flightService.getFlightById(flightId);
+      return res.status(200).json({
+        data: flight,
+        success: true,
+        error: {},
+        message: "Flight retrieved successfully",
+      });
+    } catch (error) {
+      console.log("Unable to retrieve flight in controller:", error);
+      return res.status(500).json({
+        data: null,
+        success: false,
+        error: "Internal Server Error",
+        message: "Unable to retrieve flight",
+      });
+    }
+  };
+  
 
 module.exports ={
-    create
+    create,
+    getFlightById
 }

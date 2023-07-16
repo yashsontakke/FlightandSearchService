@@ -1,4 +1,4 @@
-const {FlightService} = require("../services/index");
+const { FlightService } = require("../services/index");
 
 const flightService = new FlightService();
 
@@ -33,27 +33,48 @@ const create = async (req, res) => {
 }
 const getFlightById = async (req, res) => {
     try {
-      const flightId = req.params.id; // Assuming the flight ID is passed as a URL parameter
-      const flight = await flightService.getFlightById(flightId);
-      return res.status(200).json({
-        data: flight,
-        success: true,
-        error: {},
-        message: "Flight retrieved successfully",
-      });
+        const flightId = req.params.id; // Assuming the flight ID is passed as a URL parameter
+        const flight = await flightService.getFlightById(flightId);
+        return res.status(200).json({
+            data: flight,
+            success: true,
+            error: {},
+            message: "Flight retrieved successfully",
+        });
     } catch (error) {
-      console.log("Unable to retrieve flight in controller:", error);
-      return res.status(500).json({
-        data: null,
-        success: false,
-        error: "Internal Server Error",
-        message: "Unable to retrieve flight",
-      });
+        console.log("Unable to retrieve flight in controller:", error);
+        return res.status(500).json({
+            data: null,
+            success: false,
+            error: "Internal Server Error",
+            message: "Unable to retrieve flight",
+        });
     }
-  };
-  
+};
+const getAll = async (req, res) => {
+    try {
+        const response = await flightService.getAllFlightData(req.query);
+        return res.status(201).json({
+            data: response,
+            success: true,
+            err: {},
+            message: 'Successfully fetched the flights'
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Not able to fetch the flights',
+            err: error
+        });
+    }
+}
 
-module.exports ={
+
+
+module.exports = {
     create,
-    getFlightById
+    getFlightById,
+    getAll
 }
